@@ -1,0 +1,63 @@
+.gap {
+  height: 100vh; /* space before/after */
+} /* wrapper to create scroll time */
+.section-wrapper {
+  height: 300dvh; /*
+enough scroll time for 3 phases */
+  position: relative;
+} /* section stays fixed
+once it hits top */
+.sectionclass {
+  position: sticky;
+  top: 0;
+  padding: 10% 5%;
+  background: #f3f3f3;
+  height: 100dvh;
+  font-size: 2rem;
+  line-height: cover;
+  font-weight: bold;
+  font-family: "Poppins";
+}
+.sectionclass span {
+  color: #cfcfcfd9; /* initial dark */
+} /* scroll-driven
+animations */
+.firstwords {
+  animation: firstColor linear forwards;
+  animation-timeline: view(block);
+  animation-range: contain 50% contain 51%;
+}
+.secondwords {
+  animation: secondColor linear forwards;
+  animation-timeline: view(block);
+  animation-range: contain 75% contain 76%;
+}
+.thirdwords {
+  animation: thirdColor linear forwards;
+  animation-timeline: view(block);
+  animation-range: contain 99% contain 100%;
+}
+@keyframes firstColor {
+  from {
+    color: #cfcfcfd9;
+  }
+  to {
+    color: black;
+  }
+}
+@keyframes secondColor {
+  from {
+    color: #cfcfcfd9;
+  }
+  to {
+    color: black;
+  }
+}
+@keyframes thirdColor {
+  from {
+    color: #cfcfcfd9;
+  }
+  to {
+    color: black;
+  }
+}

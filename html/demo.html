@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion accordionsection</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--border);
+        line-height: 1.6;
+      }
+      :root {
+        --bg: #fff8f0;
+        --panel-bg: #fcefdc;
+        --panel-hover: #f9e4c7;
+        --border: #4b0d1a;
+        --shadow: #4b0d1a;
+      }
+      .accordionsection {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        padding: 4rem 6%;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* LEFT SIDE: Video box */
+      .video-box {
+        flex: 1 1 420px;
+        max-width: 480px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 10px 0 var(--shadow);
+        position: relative;
+        isolation: isolate;
+
+        /* scroll animation */
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeSlideUp both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+        order: 2;
+      }
+
+      .video-box video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Floating icons */
+      .icon {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: float 5s ease-in-out infinite;
+      }
+      .icon img {
+        width: 40px;
+        height: 40px;
+      }
+      .icon1 {
+        top: 20%;
+        left: -40px;
+        animation-delay: 0s;
+      }
+      .icon2 {
+        top: 10%;
+        right: -40px;
+        animation-delay: 1s;
+      }
+      .icon3 {
+        bottom: 20%;
+        left: -50px;
+        animation-delay: 2s;
+      }
+      .icon4 {
+        bottom: 10%;
+        right: -40px;
+        animation-delay: 3s;
+      }
+
+      /* RIGHT SIDE: Accordion */
+      .accordion {
+        flex: 1 1 420px;
+        max-width: 600px;
+
+        /* scroll animation */
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeSlideUp both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 50%;
+      }
+
+      .accordion-item {
+        border: 2px solid var(--border);
+        border-radius: 14px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        background: var(--panel-bg);
+
+        animation: fadeSlideUp both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 50%;
+      }
+
+      .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 1.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+
+      .accordion-header:hover {
+        background: var(--panel-hover);
+      }
+
+      .accordion-header span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        transition: transform 0.3s;
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 1.5rem;
+        background: #fff;
+      }
+
+      .accordion-content p {
+        margin: 1rem 0;
+      }
+
+      /* open state */
+      .accordion-item.open .accordion-content {
+        max-height: 200px;
+        padding: 1rem 1.5rem;
+      }
+      .accordion-item.open .accordion-header span {
+        transform: rotate(45deg); /* turns + into × */
+      }
+
+      /* Animations */
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .accordionsection {
+          flex-direction: column;
+          gap: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <accordionsection class="accordionsection">
+      <!-- Left: Video with icons -->
+      <div class="video-box">
+        <img src="../src/image/pom-img.png" />
+      </div>
+
+      <!-- Right: Accordion -->
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header">
+            Up to 90% cheaper than PMI
+            <span>−</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              With PMI, up to 60% of your whole premium goes to the brokers who
+              sold it to you, and you pay 12% insurance premium tax on the
+              entire amount. Pomegranate isn’t insurance, so you won’t have to
+              pay any IPT, and it’s sold direct, so there won’t be any brokers
+              to pay.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Caring for you throughout your life
+            <span>+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              We’ll always be here to support you with flexible, affordable care
+              tailored to your needs throughout your life.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Reduce your subscription by sharing
+            <span>+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Invite your friends and family to join and reduce your
+              subscription fees through sharing.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Chronic condition? Not a problem.
+            <span>+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              We cover chronic conditions without exclusions, so you can get the
+              care you need without worry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </accordionsection>
+
+    <script>
+      // Accordion toggle
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const item = header.parentElement;
+          item.classList.toggle("open");
+
+          const span = header.querySelector("span");
+          span.textContent = item.classList.contains("open") ? "−" : "+";
+        });
+      });
+    </script>
+  </body>
+</html>
